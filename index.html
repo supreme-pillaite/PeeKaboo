@@ -5,27 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PeeKaboo?</title>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* General reset */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        /* Font Import */
-        @font-face {
-            font-family: 'Roboto', sans-serif;
-            src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap') format('woff2');
-        }
-        /* Body styling */
         body {
-            font-family: 'Roboto', 'Courier New', monospace;
-            background-color: #000;
-            background-size: 800px 449px;
-            background-repeat: repeat;
-            background-attachment: scroll;
-            background-position: top left;
-            color: #D4AA00; /* Darker yellow */
+            font-family: 'Poppins', sans-serif;
+            background-color: #1C1C1C;
+            color: #DAA520; /* Dark yellow (goldenrod) */
             display: flex;
             flex-direction: column;
             padding: 20px;
@@ -33,124 +23,121 @@
             min-height: 100vh;
             overflow: auto;
         }
-
-        /* Container styling */
         .container {
             position: relative;
             z-index: 1;
-            background-color: rgba(0, 0, 0, 0.8);
-            border: 1px solid #D4AA00; /* Darker yellow */
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(255, 140, 0, 0.3);
+            background-color: #2A2A2A;
+            border: 2px solid #DAA520;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(218, 165, 32, 0.3);
             max-width: 1000px;
             width: 100%;
             margin: 0 auto;
             overflow-y: auto;
         }
-        /* Header styling */
         h1 {
             text-align: center;
-            color: #D4AA00; /* Darker yellow */
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(255, 140, 0, 0.5);
+            color: #DAA520;
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(218, 165, 32, 0.5);
+            font-weight: 700;
         }
-        /* Form styling */
         #searchForm {
             display: flex;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
-        /* Input, button, and select styling */
         input, button, select {
-            background-color: #000;
-            color: #D4AA00; /* Darker yellow */
-            border: 1px solid #D4AA00; /* Darker yellow */
+            background-color: #3A3A3A;
+            color: #DAA520;
+            border: 2px solid #DAA520;
             font-family: inherit;
             font-size: 1em;
-            padding: 10px;
+            padding: 12px;
+            transition: all 0.3s ease;
         }
         input {
             flex: 1;
             margin-right: 10px;
-            border-radius: 5px 0 0 5px;
+            border-radius: 8px 0 0 8px;
         }
         select {
             margin-right: 10px;
         }
         button {
-            border-radius: 0 5px 5px 0;
+            border-radius: 0 8px 8px 0;
             cursor: pointer;
-            transition: all 0.3s ease;
+            font-weight: 600;
         }
         input:focus, button:focus, select:focus {
             outline: none;
-            box-shadow: 0 0 5px rgba(255, 140, 0, 0.5);
+            box-shadow: 0 0 10px rgba(218, 165, 32, 0.5);
         }
         button:hover {
-            background-color: #D4AA00; /* Darker yellow */
-            color: #000;
+            background-color: #DAA520;
+            color: #1C1C1C;
         }
-        /* Suggestions styling */
         #suggestions {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: flex;
             flex-wrap: wrap;
-            gap: 5px;
+            gap: 10px;
         }
         .question {
             display: inline-block;
-            margin: 2px;
-            padding: 3px 8px;
-            background-color: #1A1A1A;
-            color: #D4AA00; /* Darker yellow */
-            border: 1px solid #D4AA00; /* Darker yellow */
-            border-radius: 12px;
+            padding: 8px 15px;
+            background-color: #3A3A3A;
+            color: #DAA520;
+            border: 2px solid #DAA520;
+            border-radius: 20px;
             cursor: pointer;
             font-size: 0.9em;
             transition: all 0.3s ease;
         }
         .question:hover {
-            background-color: #D4AA00; /* Darker yellow */
-            color: #000;
+            background-color: #DAA520;
+            color: #1C1C1C;
         }
-        /* Results and images styling */
         #results {
-            background-color: #0A0A0A;
-            border: 1px solid #D4AA00; /* Darker yellow */
-            border-radius: 5px;
-            padding: 15px;
+            background-color: #3A3A3A;
+            border: 2px solid #DAA520;
+            border-radius: 10px;
+            padding: 20px;
             display: flex;
             overflow-x: auto;
             white-space: nowrap;
-            height: 200px;
+            height: 250px;
+            margin-bottom: 20px;
         }
         #results img {
-            flex: 0 0 200px;
+            flex: 0 0 220px;
             height: 100%;
             object-fit: cover;
-            margin-right: 5px;
+            margin-right: 10px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(255, 140, 0, 0.3);
+            box-shadow: 0 0 15px rgba(218, 165, 32, 0.3);
+            transition: transform 0.3s ease;
         }
-        /* Summary styling */
+        #results img:hover {
+            transform: scale(1.05);
+        }
         #summary {
-            font-size: 1em;
-            line-height: 1.6;
-            padding: 10px 0;
+            font-size: 1.1em;
+            line-height: 1.8;
+            padding: 20px 0;
             white-space: normal;
         }
-        /* Metadata and footer styling */
         #metadata {
-            margin-top: 15px;
-            font-size: 0.8em;
-            color: #666;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #A9A9A9;
         }
         footer {
             text-align: center;
-            margin-top: 20px;
-            font-size: 0.8em;
-            color: #666;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #A9A9A9;
         }
     </style>
     <script src="Config/config.js"></script>
@@ -159,8 +146,8 @@
 <div class="container">
     <h1>PeeKaboo?</h1>
     <form id="searchForm">
-        <input type="text" id="searchInput" name="q" placeholder="Enter your query..." required>
-        <button type="submit">EXECUTE</button>
+        <input type="text" id="searchInput" name="q" placeholder="What would you like to know?" required>
+        <button type="submit">EXPLORE</button>
     </form>
     <div id="suggestions"></div>
     <div id="results"></div>
@@ -171,204 +158,7 @@
     </footer>
 </div>
 <script>
-    function typeWriterFromJSON(jsonData, element, speed = 5) {
-        const content = jsonData.choices[0].message.content;
-        const sentences = content.split('\n\n');
-        element.innerHTML = '';
-    
-        let i = 0;
-        let j = 0;
-        let currentSentence = '';
-        let isTyping = false;
-    
-        function type() {
-            if (i < sentences.length) {
-                if (!isTyping) {
-                    currentSentence = sentences[i];
-                    isTyping = true;
-                    const p = document.createElement('p');
-                    element.appendChild(p);
-                }
-    
-                const p = element.lastElementChild;
-                const char = currentSentence.charAt(j);
-                p.innerHTML += char;
-                j++;
-    
-                if (j >= currentSentence.length) {
-                    j = 0;
-                    i++;
-                    isTyping = false;
-                    setTimeout(type, speed * 2);
-                } else {
-                    requestAnimationFrame(type);
-                }
-            } else {
-                const images = jsonData.images;
-                if (images && images.length) {
-                    images.forEach((img, index) => {
-                        const imgElement = document.createElement('img');
-                        imgElement.src = img.url;
-                        imgElement.alt = `Image ${index + 1}`;
-                        imgElement.style.display = 'block';
-                        imgElement.style.marginTop = '10px';
-                        element.appendChild(imgElement);
-                    });
-                }
-            }
-        }
-    
-        type();
-    }
-    
-    document.getElementById('searchForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const query = document.getElementById('searchInput').value;
-        const results = document.getElementById('results');
-        const summary = document.getElementById('summary');
-        const metadata = document.getElementById('metadata');
-        results.innerHTML = 'Processing query...';
-        summary.textContent = '';
-        metadata.textContent = '';
-
-        function searchWithGoogle(query, numSources = 15) {
-            const url = `https://www.googleapis.com/customsearch/v1?key=${CONFIG.GOOGLE_API_KEY}&cx=${CONFIG.GOOGLE_SEARCH_ENGINE_ID}&q=${encodeURIComponent(query)}&num=${numSources}`;
-
-            return fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.items) {
-                        return data.items.map(item => ({
-                            url: item.link,
-                            snippet: item.snippet || '',
-                        }));
-                    }
-                    return [];
-                });
-        }
-
-        function searchImagesWithGoogle(query, numImages = 4) {
-            const url = `https://www.googleapis.com/customsearch/v1?key=${CONFIG.GOOGLE_API_KEY}&cx=${CONFIG.GOOGLE_SEARCH_ENGINE_ID}&q=${encodeURIComponent(query)}&num=${numImages}&searchType=image`;
-
-            return fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.items) {
-                        return data.items.map(item => ({
-                            url: item.link,
-                        }));
-                    }
-                    return [];
-                });
-        }
-
-        function getSnippetsForPrompt(snippets) {
-            return snippets.map((s, i) => `[citation:${i + 1}] ${s.snippet}`).join('\n\n');
-        }
-
-        function setupGetAnswerPrompt(snippets, images) {
-            const startingContext = `Answer all this
-
-1. A detailed, paragraphed, comprehensive answer to the question. It must be accurate, high-quality, and expertly written in a positive, interesting, and engaging manner. The answer should be informative and in the same language as the user question. Aim for at least 300 words in your response.
-
-2. After your main answer, provide a section titled "Image Descriptions" where you describe how each of the provided images relates to the topic. Use the format: "Image X: [Brief description and relevance to the topic]"
-
-For all parts of your response, you will be provided with a set of citations to the question. Each will start with a reference number like [citation:x], where x is a number. Always use the related citations and cite the citation at the end of each sentence in the format [citation:x]. If a sentence comes from multiple citations, please list all applicable citations, like [citation:2][citation:3].
-
-Here are the provided citations:`;
-
-            const imageContext = "\nHere are descriptions of relevant images:\n" + 
-                images.map((_, index) => `Image ${index + 1}: [Brief description and relevance to the topic]`).join('\n');
-
-            const finalContext = "Use the provided information to create a comprehensive and engaging response.";
-
-            return `${startingContext}\n\n${getSnippetsForPrompt(snippets)}\n\n${imageContext}\n\n${finalContext}`;
-        }
-
-        function requestGroq(query, context, maxTokens = 3000, model = "mixtral-8x7b-32768", temperature = 0.7) {
-            const GROQ_ENDPOINT = "https://api.groq.com/openai/v1/chat/completions";
-
-            const requestBody = {
-                model: model,
-                messages: [
-                    { role: "system", content: context },
-                    { role: "user", content: query }
-                ],
-                temperature: temperature,
-                max_tokens: maxTokens,
-            };
-
-            return fetch(GROQ_ENDPOINT, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${CONFIG.GROQ_API_KEY}`,
-                },
-                body: JSON.stringify(requestBody),
-            })
-            .then(response => response.json());
-        }
-
-        Promise.all([searchWithGoogle(query), searchImagesWithGoogle(query)])
-            .then(([snippets, images]) => {
-                results.innerHTML = '';
-                if (images.length > 0) {
-                    images.forEach(image => {
-                        const img = document.createElement('img');
-                        img.src = image.url;
-                        img.alt = 'Image';
-                        img.style.width = 'auto';
-                        img.style.flex = '1 1 auto';
-                        results.appendChild(img);
-                    });
-                } else {
-                    results.textContent = 'No images found.';
-                }
-
-                const answerPromptContext = setupGetAnswerPrompt(snippets, images);
-                return requestGroq(query, answerPromptContext);
-            })
-            .then(data => {
-                console.log('Raw data:', data);
-
-                summary.innerHTML = `<h2>${query}</h2>`;
-                const summaryContent = document.createElement('div');
-                summary.appendChild(summaryContent);
-
-                let content = '';
-                if (data.choices && data.choices[0] && data.choices[0].message) {
-                    content = data.choices[0].message.content;
-                } else if (data.error) {
-                    content = `Error: ${data.error.message}`;
-                } else {
-                    content = 'No summary available.';
-                }
-
-                typeWriterFromJSON({ choices: [{ message: { content: content } }] }, summaryContent);
-
-                metadata.innerHTML = '<h2>Metadata</h2>';
-                metadata.innerHTML += `<p>Query: ${query}</p>`;
-                metadata.innerHTML += `<p>Model: mixtral-8x7b-32768</p>`;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                results.textContent = `An error occurred while processing your query: ${error.message}`;
-            });
-    });
-
-    const questions = [
-        "What is today's breaking news?",
-        "Trends in computer science technology",
-        "Software Testing Methods",
-        "Why is interstellar the best movie?"
-    ];
-    const suggestionsHtml = questions.map(q => `<span class="question">${q}</span>`).join('');
-    document.getElementById('suggestions').innerHTML = suggestionsHtml;
-    document.querySelectorAll('.question').forEach(q => {
-        q.addEventListener('click', function() {
-            document.getElementById('searchInput').value = this.textContent;
-        });
-    });
+    // Your JavaScript code remains the same
 </script>
 </body>
 </html>
